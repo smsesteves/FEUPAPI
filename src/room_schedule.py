@@ -1,6 +1,7 @@
 __author__ = 'smsesteves'
 
 import requests
+import xml.etree.ElementTree as ET
 
 class RoomSchedule():
     ID_POLO = 164
@@ -19,4 +20,7 @@ class RoomSchedule():
         }
         r = requests.post("https://sigarra.up.pt/feup/pt/instal_geral.espaco_list",data=jsondata)
         #print(r.text)
+        #tree = ET.fromstring(r.text)
+        #root = tree.getroot()
+        #print(root.tag)
         return "73201"
