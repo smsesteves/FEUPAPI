@@ -4,5 +4,6 @@ Bibliotecas:
 
 Beatiful Soup 4
 lxml
+flask
 
 Instalação por pip ou anaconda
