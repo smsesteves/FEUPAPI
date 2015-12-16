@@ -1,5 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
+from src import consts
 
 # URL that contains information about the food menus of FEUP
 MENUS_URL = "https://sigarra.up.pt/feup/pt/cantina.ementashow"
@@ -63,3 +64,27 @@ def get_menu_restaurant():
         table_data.append([value.string for value in row_data])
 
     return table_data
+
+
+# Prepares the menu list to be returned by jsonify, transforming it into a dictionary
+def prepare_menu(menu, place):
+
+    new_menu = dict()
+    if place == "cafeteria":
+        for dotw in menu:
+            new_menu[dotw[0]] = dict()
+            new_menu[dotw[0]]["date"] = dotw[consts.CAFETERIA_DATE]
+            new_menu[dotw[0]]["meat course"] = dotw[consts.CAFETERIA_MEAT]
+            new_menu[dotw[0]]["fish course"] = dotw[consts.CAFETERIA_FISH]
+            new_menu[dotw[0]]["vegetarian course"] = dotw[consts.CAFETERIA_VEGE]
+            new_menu[dotw[0]]["diet course"] = dotw[consts.CAFETERIA_DIET]
+    elif place == "restaurant":
+        for dotw in menu:
+            new_menu[dotw[0]] = dict()
+            new_menu[dotw[0]]["date"] = dotw[consts.CAFETERIA_DATE]
+            new_menu[dotw[0]]["meat course"] = dotw[consts.CAFETERIA_MEAT]
+            new_menu[dotw[0]]["fish course"] = dotw[consts.CAFETERIA_FISH]
+    else:
+        new_menu["error"] = "No such place as " + place
+
+    return new_menu

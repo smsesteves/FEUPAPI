@@ -1,28 +1,11 @@
 import unittest
 import time
+from src import consts
 import src.food_menu as food_menu
 
 # Minimum and maximum menus 'allowed' to be found on the website
 MIN_MENUS = 1
 MAX_MENUS = 10
-
-# Cafeteria list structure: [Day of the Week, Date(dd-mm-yyyy), Meat dish, Fish dish, Vegetarian dish, Diet dish]
-CAFETERIA_DATA_SIZE = 6
-CAFETERIA_DOTW = 0
-CAFETERIA_DATE = 1
-CAFETERIA_MEAT = 2
-CAFETERIA_FISH = 3
-CAFETERIA_VEGE = 4
-CAFETERIA_DIET = 5
-CAFETERIA_DATE_FORMAT = "%d-%m-%Y"
-
-# Restaurant list structure: [Day of the Week, Date(dd-mm-yyyy), Meat dish, Fish dish]
-RESTAURANT_DATA_SIZE = 4
-RESTAURANT_DOTW = 0
-RESTAURANT_DATE = 1
-RESTAURANT_MEAT = 2
-RESTAURANT_FISH = 3
-RESTAURANT_DATE_FORMAT = "%d-%m-%Y"
 
 # Failed connection string
 CONNECTION_FAILED = "Connection failed!"
@@ -41,7 +24,7 @@ class FoodMenuTest(unittest.TestCase):
     def test_cafeteria_date(self):
         test_list_cafeteria = food_menu.get_menu_cafeteria()
         for menu in test_list_cafeteria:
-            self.assertGreaterEqual(menu[CAFETERIA_DATE], time.strftime(CAFETERIA_DATE_FORMAT))
+            self.assertGreaterEqual(menu[consts.CAFETERIA_DATE], time.strftime(consts.CAFETERIA_DATE_FORMAT))
 
     # Tests to see if a connection could be established to the website.
     def test_cafeteria_valid_input(self):
@@ -54,7 +37,7 @@ class FoodMenuTest(unittest.TestCase):
     def test_cafeteria_correct_values(self):
         test_list_cafeteria = food_menu.get_menu_cafeteria()
         for menu in test_list_cafeteria:
-            self.assertEqual(len(menu), CAFETERIA_DATA_SIZE)
+            self.assertEqual(len(menu), consts.CAFETERIA_DATA_SIZE)
 
     # Tests to see if the returned list has between 1 and 10 entries since the website shows atmost 2 weeks of menus.
     def test_restaurant_length(self):
@@ -66,7 +49,7 @@ class FoodMenuTest(unittest.TestCase):
     def test_restaurant_date(self):
         test_list_restaurant = food_menu.get_menu_restaurant()
         for menu in test_list_restaurant:
-            self.assertGreaterEqual(menu[RESTAURANT_DATE], time.strftime(RESTAURANT_DATE_FORMAT))
+            self.assertGreaterEqual(menu[consts.RESTAURANT_DATE], time.strftime(consts.RESTAURANT_DATE_FORMAT))
 
     # Tests to see if a connection could be established to the website.
     def test_restaurant_valid_input(self):
@@ -79,4 +62,4 @@ class FoodMenuTest(unittest.TestCase):
     def test_restaurant_correct_values(self):
         test_list_restaurant = food_menu.get_menu_restaurant()
         for menu in test_list_restaurant:
-            self.assertEqual(len(menu), RESTAURANT_DATA_SIZE)
+            self.assertEqual(len(menu), consts.RESTAURANT_DATA_SIZE)
