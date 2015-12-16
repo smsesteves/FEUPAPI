@@ -4,7 +4,7 @@ from urllib.request import urlopen
 # URL that contains information about the food menus of FEUP
 MENUS_URL = "https://sigarra.up.pt/feup/pt/cantina.ementashow"
 # [HARDCODED] From the tables containing the information, the cafeteria is the third and the restaurant is the forth
-#             hence the ids to be used on the array of data retreived are 2 and 3 respectively
+#             hence the ids to be used on the array of data retrieved are 2 and 3 respectively
 CAFETERIA_TABLE_ID = 2
 RESTAURANT_TABLE_ID = 3
 
@@ -20,9 +20,9 @@ def get_menu_cafeteria():
     except Exception:
         raise ConnectionError
 
-    # Loads the HTML aand finds the relevant tables.
+    # Loads the HTML and finds the relevant tables.
     soup = BeautifulSoup(html, "lxml")
-    soup = soup.find_all("table", "dados")[CAFETERIA_TABLE_ID]  # [HAARDCODED] See above for a description
+    soup = soup.find_all("table", "dados")[CAFETERIA_TABLE_ID]  # [HARDCODED] See above for a description
     soup = soup.find_all("tr")
     soup = soup[1:]  # Removes the first row of results since they are the names of the fields in each column
 
@@ -41,16 +41,16 @@ def get_menu_cafeteria():
 # Returns: Data in a list where each element is a list with the following format:
 # [Day of the Week, Date(dd-mm-yyyy), Meat dish, Fish dish]
 def get_menu_restaurant():
-    # Tries to open the MENNUS_URL. Raises a ConnectionError if it is unable to connect.
+    # Tries to open the MENUS_URL. Raises a ConnectionError if it is unable to connect.
     try:
         content = urlopen(MENUS_URL)
         html = content.read()
     except Exception:
         raise ConnectionError
 
-    # Loads the HTML aand finds the relevant tables.
+    # Loads the HTML and finds the relevant tables.
     soup = BeautifulSoup(html, "lxml")
-    soup = soup.find_all("table", "dados")[RESTAURANT_TABLE_ID]  # [HAARDCODED] See above for a description
+    soup = soup.find_all("table", "dados")[RESTAURANT_TABLE_ID]  # [HARDCODED] See above for a description
     soup = soup.find_all("tr")
     soup = soup[1:]  # Removes the first row of results since they are the names of the fields in each column
 
