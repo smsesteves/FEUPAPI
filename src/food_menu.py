@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 from urllib.request import urlopen
-from src import consts
+import consts
 
 # URL that contains information about the food menus of FEUP
 MENUS_URL = "https://sigarra.up.pt/feup/pt/cantina.ementashow"
