@@ -1,5 +1,5 @@
 import flask
-from src import food_menu
+import food_menu
 
 app = flask.Flask("OFEUPAPI - Food Menu")
 
